@@ -1,4 +1,7 @@
 import express from 'express';
+import 'dotenv/config'; //permite procesar variables de entorno
+import cors from 'cors';
+import morgan from 'morgan';
 console.log("hola mundo 2")
 
 //1- configurar un puerto 
@@ -9,6 +12,9 @@ app.listen(app.get('port'),()=>{
 })
 
 //2- configurar middleware
-
+app.use(cors());//permite conexiones remotas
+app.use(morgan('dev'));// nos da inforamcion extra en la terminal
+app.use(express.json());// permite interpretar los datos en formato json
+app.use(express.urlencoded( {extended:true} ));// ayuda a interpretar los datos del body del request
 
 //3- configurar las rutas
